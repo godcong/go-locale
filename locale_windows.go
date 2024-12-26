@@ -1,13 +1,39 @@
 package locale
 
 import (
+	"bytes"
+	"os/exec"
+	"strings"
+
+	"golang.org/x/sys/windows"
 	"golang.org/x/sys/windows/registry"
 )
 
 var detectors = []detector{
 	detectViaEnvLanguage,
 	detectViaEnvLc,
+	detectViaSyscall,
+	detectViaPowershell,
 	detectViaRegistry,
+}
+
+func detectViaPowershell() (langs []string, err error) {
+	path, err := exec.LookPath("powershell.exe")
+	if err != nil {
+		return nil, err
+	}
+	cmd := exec.Command(path, "Get-Culture | select -exp Name")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err = cmd.Run()
+	if err != nil {
+		return nil, err
+	}
+	return []string{strings.Trim(out.String(), "\r\n")}, nil
+}
+
+func detectViaSyscall() (langs []string, err error) {
+	return windows.GetSystemPreferredUILanguages(windows.MUI_LANGUAGE_NAME)
 }
 
 // detectViaRegistry will detect language via Windows Registry

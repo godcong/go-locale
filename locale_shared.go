@@ -9,7 +9,7 @@ import (
 //
 // goos: linux
 // goarch: amd64
-// pkg: github.com/Xuanwo/go-locale
+// pkg: github.com/godcong/go-locale
 // BenchmarkLookupEnv
 // BenchmarkLookupEnv-8   	37024654	        32.4 ns/op
 // BenchmarkEnviron

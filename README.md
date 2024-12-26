@@ -1,9 +1,9 @@
 # go-locale
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Xuanwo/go-locale/test.yml?branch=master)](https://github.com/Xuanwo/go-locale/actions?query=branch%3master)
-[![Go Doc](https://pkg.go.dev/badge/github.com/Xuanwo/go-locale)](https://pkg.go.dev/github.com/Xuanwo/go-locale)
-[![Go Ver](https://img.shields.io/github/go-mod/go-version/Xuanwo/go-locale)](https://github.com/Xuanwo/go-locale/blob/master/go.mod)
-[![License](https://img.shields.io/badge/license-apache%20v2-blue.svg)](https://github.com/Xuanwo/go-locale/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/godcong/go-locale/test.yml?branch=master)](https://github.com/godcong/go-locale/actions?query=branch%3master)
+[![Go Doc](https://pkg.go.dev/badge/github.com/godcong/go-locale)](https://pkg.go.dev/github.com/godcong/go-locale)
+[![Go Ver](https://img.shields.io/github/go-mod/go-version/godcong/go-locale)](https://github.com/godcong/go-locale/blob/master/go.mod)
+[![License](https://img.shields.io/badge/license-apache%20v2-blue.svg)](https://github.com/godcong/go-locale/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/1111711408875393035?logo=discord&label=discord)](https://discord.gg/kKqtVnvh)
 
 `go-locale` is a Golang lib for cross-platform locale detection.
@@ -58,31 +58,32 @@ Support all OS that Golang supported, except `android`:
 - Lookup env `LC_ALL`
 - Lookup env `LC_MESSAGES`
 - Lookup env `LANG`
-- macOS X [User Defaults System](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/AboutPreferenceDomains/AboutPreferenceDomains.html)
-  - Lookup user AppleLocale
-  - Lookup user AppleLanguages
-  - Lookup global AppleLocale
-  - Lookup global AppleLanguages
+- macOS
+  X [User Defaults System](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/AboutPreferenceDomains/AboutPreferenceDomains.html)
+    - Lookup user AppleLocale
+    - Lookup user AppleLanguages
+    - Lookup global AppleLocale
+    - Lookup global AppleLanguages
 
 ## Usage
 
 ```go
 import (
-    "github.com/Xuanwo/go-locale"
+"github.com/godcong/go-locale"
 )
 
 func main() {
-    tag, err := locale.Detect()
-    if err != nil {
-        log.Fatal(err)
-    }
-    // Have fun with language.Tag!
+tag, err := locale.Detect()
+if err != nil {
+log.Fatal(err)
+}
+// Have fun with language.Tag!
 
-    tags, err := locale.DetectAll()
-    if err != nil {
-        log.Fatal(err)
-    }
-    // Get all available tags
+tags, err := locale.DetectAll()
+if err != nil {
+log.Fatal(err)
+}
+// Get all available tags
 }
 ```
 

@@ -6,6 +6,20 @@ import (
 	"golang.org/x/text/language"
 )
 
+var tags []language.Tag
+
+func init() {
+	var err error
+	tags, err = DetectAll()
+	if err != nil {
+		tags = []language.Tag{language.AmericanEnglish}
+	}
+}
+
+func Languages() []language.Tag {
+	return tags
+}
+
 // Detect will detect current env's language.
 func Detect() (tag language.Tag, err error) {
 	tags, err := DetectAll()
